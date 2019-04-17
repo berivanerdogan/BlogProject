@@ -37,20 +37,24 @@ namespace BlogProject.UI.Areas.Author.Controllers
 
         public ActionResult UpdateArticle(Guid id)
         {
-            Article article = service.ArticleService.GetById(id);
-            ArticleVM model = new ArticleVM();
-            model.Articles.ID = article.ID;
-            model.Articles.Header = article.Header;
-            model.Articles.Subtitle = article.SubTitle;
-            model.Articles.Content = article.Content;
-            model.Articles.PublishDate = DateTime.Now;
+           
 
-            List<AppUser> AppUsers = service.AppUserService.GetActive();
-            model.AppUsers = AppUsers;
+                    Article article = service.ArticleService.GetById(id);
+                    ArticleVM model = new ArticleVM();
+                    model.Articles.ID = article.ID;
+                    model.Articles.Header = article.Header;
+                    model.Articles.Subtitle = article.SubTitle;
+                    model.Articles.Content = article.Content;
+                    model.Articles.PublishDate = DateTime.Now;
 
-            List<Category> Categories = service.CategoryService.GetActive();
-            model.Categories = Categories;
-            return View(model);
+                    List<AppUser> AppUsers = service.AppUserService.GetActive();
+                    model.AppUsers = AppUsers;
+
+                    List<Category> Categories = service.CategoryService.GetActive();
+                    model.Categories = Categories;
+                    return View(model);
+           
+
 
 
         }
@@ -58,33 +62,49 @@ namespace BlogProject.UI.Areas.Author.Controllers
         [HttpPost]
         public ActionResult UpdateArticle(ArticleDTO model)
         {
-            if (ModelState.IsValid)
-            {
-                //service.ArticleService.Update(model);
-                Article article = service.ArticleService.GetById(model.ID);
-                article.Header = model.Header;
-                article.Content = model.Content;
-                article.SubTitle = model.SubTitle;
-                article.PublishDate = DateTime.Now;
-                article.CategoryID = model.CategoryID;
-                article.UpdateDate = DateTime.Now;
-                article.Status = BlogProject.DAL.ORM.Enum.Status.Modified;
-                service.ArticleService.Save(); 
-                return Redirect("/Author/Article/ArticleList");
-            }
-            else
-            {
-                return Redirect("/Author/Article/ArticleList");
-            }
-        }
 
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                AppUser user = service.AppUserService.FindByUserName(HttpContext.User.Identity.Name);
+                    //Article articles = service.ArticleService.GetByDefault(x => x.AppUserID == user.ID);
+                    if (user.ID == model.AppUserID)
+                    {
+
+                        if (ModelState.IsValid)
+                        {
+                            //service.ArticleService.Update(model);
+                            Article article = service.ArticleService.GetById(model.ID);
+                            article.Header = model.Header;
+                            article.Content = model.Content;
+                            article.SubTitle = model.SubTitle;
+                            article.PublishDate = DateTime.Now;
+                            article.CategoryID = model.CategoryID;
+                            article.UpdateDate = DateTime.Now;
+                            article.Status = BlogProject.DAL.ORM.Enum.Status.Modified;
+                            service.ArticleService.Save();
+                            return Redirect("/Author/Article/ArticleList");
+                        }
+                        else
+                        {
+                            return Redirect("/Author/Article/ArticleList");
+                        }
+                    }
+                    else
+                    {
+                        ViewData["Message"] = "You are not authorized to updated this article";
+                        return Redirect("/Author/Article/ArticleList");
+                    }
+            }
+
+
+            return View();
+
+        }
         public ActionResult Delete(Guid id)
         {
-            
-              
-                    service.ArticleService.Remove(id);
-                    return Redirect("/Author/Article/ArticleList");
-     
+            service.ArticleService.Remove(id);
+            return Redirect("/Author/Article/ArticleList");
         }
+        
     }
 }

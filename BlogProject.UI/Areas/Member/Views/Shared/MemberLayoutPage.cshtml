@@ -1,4 +1,5 @@
 ﻿
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,8 +209,7 @@
                         <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        @Session["FullName"]
-
+                        <p>@Session["FullName"]</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -230,48 +230,17 @@
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-sitemap"></i> <span>AppUser Process</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Admin/AppUser/Add"><i class="fa fa-plus-square-o"></i> AppUser Add</a></li>
-                            <li><a href="/Admin/AppUser/AppUserList"><i class="fa fa-server"></i>AppUser List</a></li>
-                            <li><a href="/Admin/AppUser/AppUserList"><i class="fa fa-book"></i>AppUser Update</a></li>
-                            <li><a href="/Admin/AppUser/AppUserList"><i class="fa fa-trash"></i>AppUser Delete</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
                             <i class="fa fa-sitemap"></i> <span>Article Process</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/Admin/Category/Add"><i class="fa fa-plus-square-o"></i> Category Add</a></li>
-                            <li><a href="/Admin/Category/CategoryList"><i class="fa fa-server"></i>Category List</a></li>
-                            <li><a href="/Admin/Category/CategoryList"><i class="fa fa-book"></i>Category Update</a></li>
-                            <li><a href="/Admin/Category/CategoryList"><i class="fa fa-trash"></i>Category Delete</a></li>
+                           
+                            <li><a href="/Author/Article/ArticleList"><i class="fa fa-server"></i>Article List</a></li>
+                           
                         </ul>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-sitemap"></i> <span>Article Process</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Admin/Article/Add"><i class="fa fa-plus-square-o"></i> Article Add</a></li>
-                            <li><a href="/Admin/Article/ArticleList"><i class="fa fa-server"></i>Article List</a></li>
-                            <li><a href="/Admin/Article/ArticleList"><i class="fa fa-book"></i>Article Update</a></li>
-                            <li><a href="/Admin/Article/ArticleList"><i class="fa fa-trash"></i>Article Delete</a></li>
-                        </ul>
-                    </li>
-
-
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -474,4 +443,3 @@
     <script src="~/Content/script/demo.js"></script>
 </body>
 </html>
-

@@ -1,7 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Login";
-    Layout = "~/Areas/Author/Views/Shared/AuthorLayoutPage.cshtml";
+    Layout = null;
 }
 
 
@@ -19,12 +18,12 @@
     <!-- Font Awesome -->
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Ionicons -->
+
     <link href="~/Content/css/ionicons.min.css" rel="stylesheet" />
-
     <!-- Theme style -->
-
     <link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
     <!-- iCheck -->
+
     <link href="~/Content/css/blue.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,13 +58,7 @@
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                     </div>
-
-                    <div id="validation-summary" class="@TempData["class"]">
-                        @Html.ValidationSummary(false)
-                        <div id="credentials-error">
-                            @ViewData["error"]
-                        </div>
-                    </div>
+                 
 
                 </div>
             </form>

@@ -121,7 +121,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AppUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
@@ -133,9 +132,7 @@
     <Compile Include="Areas\Admin\Models\DTO\CategoryDTO.cs" />
     <Compile Include="Areas\Admin\Models\VM\ArticleUpdateVM.cs" />
     <Compile Include="Areas\Admin\Models\VM\ArticleVM.cs" />
-    <Compile Include="Areas\Admin\Models\VM\LoginVM.cs" />
     <Compile Include="Areas\Author\AuthorAreaRegistration.cs" />
-    <Compile Include="Areas\Author\Controllers\AccountController.cs" />
     <Compile Include="Areas\Author\Controllers\AppUserController.cs" />
     <Compile Include="Areas\Author\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Author\Controllers\BaseController.cs" />
@@ -143,10 +140,15 @@
     <Compile Include="Areas\Author\Models\DTO\ArticleDTO.cs" />
     <Compile Include="Areas\Author\Models\DTO\BaseDTO.cs" />
     <Compile Include="Areas\Author\Models\VM\ArticleVM.cs" />
-    <Compile Include="Areas\Author\Models\VM\LoginVM.cs" />
+    <Compile Include="Areas\Member\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Member\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\VM\LoginVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,10 +174,8 @@
     <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Category\CategoryList.cshtml" />
     <Content Include="Areas\Admin\Views\Category\CategoryUpdate.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Author\Views\web.config" />
     <Content Include="Areas\Author\Views\Shared\AuthorLayoutPage.cshtml" />
-    <Content Include="Areas\Author\Views\Account\Login.cshtml" />
     <Content Include="Areas\Author\Views\Article\Add.cshtml" />
     <Content Include="Areas\Author\Views\Article\ArticleList.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Add.cshtml" />
@@ -183,7 +183,12 @@
     <Content Include="Areas\Admin\Views\Article\UpdateArticle.cshtml" />
     <Content Include="Areas\Author\Views\Article\UpdateArticle.cshtml" />
     <Content Include="Areas\Author\Views\Home\AuthorHomeIndex.cshtml" />
+    <Content Include="Areas\Member\Views\web.config" />
+    <Content Include="Areas\Member\Views\Shared\MemberLayoutPage.cshtml" />
+    <Content Include="Areas\Member\Views\Home\MemberHomeIndex.cshtml" />
+    <Content Include="Areas\Member\Views\Home\ArticleList.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -196,9 +201,10 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Author\Views\AppUser\" />
     <Folder Include="Areas\Author\Views\Base\" />
+    <Folder Include="Areas\Member\Models\" />
+    <Folder Include="Areas\Member\Views\Base\" />
     <Folder Include="Content\image\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlogProject.BLL\BlogProject.BLL.csproj">
