@@ -98,7 +98,7 @@ namespace BlogProject.UI.Controllers
         public ActionResult LoginOut()
         {
             FormsAuthentication.SignOut();
-            return Redirect("/home/index");
+            return Redirect("/Account/Login");
         }
     }
 }

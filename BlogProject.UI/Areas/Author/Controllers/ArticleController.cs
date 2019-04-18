@@ -1,5 +1,6 @@
 ﻿
 using BlogProject.DAL.ORM.Entity;
+using BlogProject.DAL.ORM.Enum;
 using BlogProject.UI.Areas.Admin.Models.DTO;
 using BlogProject.UI.Areas.Author.Models.VM;
 using System;
@@ -14,25 +15,25 @@ namespace BlogProject.UI.Areas.Author.Controllers
     {
         public ActionResult ArticleList()
         {
-            List<Article> model = service.ArticleService.GetActive();
+            Guid userid = service.AppUserService.FindByUserName(User.Identity.Name).ID;
+            List<Article> model = service.ArticleService.GetDefault(x => x.AppUserID == userid && (x.Status == Status.Active || x.Status == Status.Modified));
             return View(model);
         }
         
         public ActionResult Add()
         {
-            ArticleVM model = new ArticleVM()
-            {
-                Categories = service.CategoryService.GetActive(),
-                AppUsers = service.AppUserService.GetActive(),
-                
-            };           
-            return View(model);
+            //List<Category> model = service.CategoryService.GetActive();
+            return View(service.CategoryService.GetActive());
         }
         [HttpPost]
         public ActionResult Add(Article article)
-        {            
+        {
+
+            AppUser user = service.AppUserService.GetByDefault(x => x.UserName == User.Identity.Name);
+            article.AppUserID = user.ID;
             service.ArticleService.Add(article);
             return Redirect("/Author/Article/ArticleList");
+              
         }
 
         public ActionResult UpdateArticle(Guid id)
@@ -100,11 +101,21 @@ namespace BlogProject.UI.Areas.Author.Controllers
             return View();
 
         }
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(ArticleDTO model)
         {
-            service.ArticleService.Remove(id);
+            service.ArticleService.Remove(model.ID);
             return Redirect("/Author/Article/ArticleList");
         }
-        
+
+        public ActionResult Show(Article article) //Burada Diğer Yazarların da makalelerini görücek
+        {
+            AppUser user = service.AppUserService.GetByDefault(x => x.UserName == User.Identity.Name);
+         
+            List<Article> model = service.ArticleService.GetDefault(x=>x.AppUserID!=user.ID);
+            return View(model);
+
+        }
+
+
     }
 }

@@ -4,7 +4,7 @@
     Layout = "~/Areas/Author/Views/Shared/AuthorLayoutPage.cshtml";
 }
 
-@model  BlogProject.UI.Areas.Author.Models.VM.ArticleVM
+@model  List<BlogProject.DAL.ORM.Entity.Category>
 
 
 <div class="content-wrapper" style="min-height: 946px;">
@@ -32,35 +32,36 @@
                     <!-- form start -->
                     <form action="/Author/Article/Add" method="post" enctype="multipart/form-data" role="form">
                         <div class="box-body">
+
+                            <div class="form-group">
+                                <label for="CategoryID">Choose Category</label>
+                                <select class="form-control" name="CategoryID">
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@item.ID">@item.CategoryName</option>
+                                    }
+
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label for="text">Header</label>
                                 <input type="text" class="form-control" name="Header" placeholder="Header" />
                             </div>
-                          <div class="form-group">
-                              <label for="CategoryID">Choose Category</label>
-                             <select class="form-control" name="CategoryID">
-                                 @foreach (var item in Model.Categories)
-                                 {
-                                     <option value="@item.ID">@item.CategoryName</option>
-                                 }
 
-                             </select>
-                          </div>
                             <div class="form-group">
-                                <label for="AppUserID">Choose AppUser</label>
-                                <select class="form-control" name="AppUserID"> 
-                                   
-	
-                                    @foreach (var item in Model.AppUsers)
-                                    {
-                                        <option value="@item.ID">@item.FirstName @item.LastName</option>
-                                    }
-                                </select>
+                                <label for="text">SubTitle</label>
+                                <input type="text" class="form-control"  name="Subtitle" placeholder="Subtitle"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="text">Content</label>
                                 <input type="text" class="form-control" name="Content" placeholder="Content" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date">PublishDate</label>
+                                <input  type="date" class="form-control" name="PublishDate" placeholder="PublishDate"/>
                             </div>
 
                         </div>

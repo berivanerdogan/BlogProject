@@ -187,8 +187,10 @@
     <Content Include="Areas\Member\Views\Shared\MemberLayoutPage.cshtml" />
     <Content Include="Areas\Member\Views\Home\MemberHomeIndex.cshtml" />
     <Content Include="Areas\Member\Views\Home\ArticleList.cshtml" />
+    <Content Include="Areas\Author\Views\Article\Show.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\LoginOut.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
